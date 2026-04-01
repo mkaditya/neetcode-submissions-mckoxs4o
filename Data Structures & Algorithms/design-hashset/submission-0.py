@@ -1,0 +1,22 @@
+class MyHashSet:
+
+    def __init__(self):
+        self.set = 0
+
+    def add(self, key: int) -> None:
+        self.set = self.set | (1 << key)
+
+    def remove(self, key: int) -> None:
+        self.set = self.set & ~(1 << key)
+
+    def contains(self, key: int) -> bool:
+        return (self.set & 1 << key) != 0
+
+        
+
+
+# Your MyHashSet object will be instantiated and called as such:
+# obj = MyHashSet()
+# obj.add(key)
+# obj.remove(key)
+# param_3 = obj.contains(key)
