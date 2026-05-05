@@ -1,0 +1,24 @@
+class Solution:
+    def reorganizeString(self, s: str) -> str:
+        count = Counter(s)
+        max_heap = [[cnt, char] for char, cnt in count.items()]
+        heapq.heapify_max(max_heap)
+
+        prev = None
+        res = ""
+
+        while max_heap or prev:
+            if prev and not max_heap:
+                return ""
+            
+            cnt, char = heapq.heappop_max(max_heap)
+            res += char
+            cnt -= 1
+
+            if prev:
+                heapq.heappush_max(max_heap, prev)
+                prev = None
+            
+            if cnt != 0:
+                prev = [cnt, char]
+        return res
